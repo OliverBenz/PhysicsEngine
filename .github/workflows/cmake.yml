@@ -16,7 +16,7 @@ jobs:
       run: cmake -E make_directory ${{runner.workspace}}/build
 
     - name: Install Dependencies
-      run: sudo apt update; sudo apt install libgtest-dev
+      run: sudo apt update; sudo apt install libgtest-dev libsdl2-dev
 
     - name: Configure CMake
       shell: bash

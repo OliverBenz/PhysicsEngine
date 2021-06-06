@@ -6,6 +6,8 @@ Window::Window(const unsigned int screenWidth, const unsigned int screenHeight)
 	{ }
 
 Window::~Window() {
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
 	SDL_Quit();
 }
 
@@ -28,13 +30,6 @@ bool Window::Create() {
 		std::cerr << "Could not create renderer: %s\n" << SDL_GetError() << std::endl;
 		return false;
 	}
-
-	return true;
-}
-
-bool Window::Close() {
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
 
 	return true;
 }

@@ -8,7 +8,6 @@ public:
 	~Window();
 
 	bool Create();
-	bool Close();
 	void drawBackground();
 
 private:

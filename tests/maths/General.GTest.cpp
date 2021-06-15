@@ -17,7 +17,7 @@ static double functionTwoReal(double a, double b)
 	{ return (1.0/3.0) * b*b*b - (1.0/3.0) * a*a*a; }
 
 
-TEST(General, Integration) {
+TEST(Integration, Numeric) {
 	{   // y: R->R; x -> x^2 - 2x
 		// Standard
 		EXPECT_NEAR(Maths::integrate(functionOne, 0, 1),
@@ -56,4 +56,9 @@ TEST(General, Integration) {
 
 	// TODO: Diverging functions
 	// TODO: Large intervals
+}
+
+TEST(Integration, Analytic) {
+	std::string input{"3.3234 + (523.234 - 3.244) * 3 *x "};
+	Maths::integrateAnalytic(input);
 }

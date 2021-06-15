@@ -2,6 +2,8 @@
 
 #include <array>
 
+#include "../common/Tree.hpp"
+
 namespace PhysEn {
 namespace Maths {
 
@@ -75,6 +77,83 @@ double integrate(double (*function)(double x), double limitA, double limitB) {
 		sum = -sum;
 
 	return sum;
+}
+
+// ----------------------
+// Analytical Integration
+// ----------------------
+static bool parseFunction(std::string& value, Tree* tree) {
+	std::string buffer{};
+
+	// Add a number to the tree
+	auto pushNumber = [&](){
+		if (! buffer.empty()) {
+			Node* node = new Node;
+			node->value = buffer;
+			buffer.clear();
+
+			tree->push_back(node);
+		}
+	};
+
+	// Add a single character to the tree
+	auto pushCharacter = [&](char c){
+		Node* node = new Node;
+		node->value = "";
+		node->value.push_back(c);
+
+		tree->push_back(node);
+	};
+
+	for(char val: value){
+		// Number or "."
+		if ((val >= 48 && val <= 57) || val == 46) {
+			buffer.push_back(val);
+		}
+			// Variable
+		else if(val >= 97 && val <= 123) {
+			if (! buffer.empty()) {   // Cannot have syntax 23y34
+				std::cerr << "Error in print: Invalid syntax at: " << val << "\n";
+				return false;
+			}
+			pushCharacter(val);
+		}
+			// Operators
+		else {
+			bool found = false;
+			switch(val) {
+				case '+':
+				case '/':
+				case '-':
+				case '*':
+				case '(':
+				case ')':
+					found = true;
+					break;
+				case ' ':
+					break;
+				default:
+					std::cerr << "Error in print: Case not covered: " << val << "\n";
+					return false;
+			}
+
+			if (found){
+				pushNumber();
+				pushCharacter(val);
+			}
+		}
+	}
+	pushNumber();
+	return true;
+}
+
+std::string integrateAnalytic(std::string& value){
+	Tree tree;
+	parseFunction(value, &tree);
+
+	// Just for testing
+	std::cout << tree;
+	return "";
 }
 
 }

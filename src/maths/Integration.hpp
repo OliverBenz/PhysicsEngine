@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace PhysEn {
 namespace Maths {
 
@@ -14,6 +16,13 @@ namespace Maths {
  * @return Numeric solution for integral.
  */
 double integrate(double (*function)(double x), double limitA, double limitB);
+
+/**
+ * @brief Create the antiderivative function of a specific function in string form.
+ * @param value Function to be integrated in string form.
+ * @return Antiderivative function in string form.
+ */
+std::string integrateAnalytic(std::string& value);
 
 }
 }

@@ -1,9 +1,12 @@
 #include "gtest/gtest.h"
 
-#include "../../src/plotter/Window.hpp"
+#include "Plotter/Window.hpp"
+
+namespace PhysEn {
+namespace GTest {
 
 TEST(Plotter, Simple){
-	Window window(400, 200);
+	Plotter::Window window(400, 200);
 	window.Create();
 
 	// TODO: Memory leak with window
@@ -13,3 +16,6 @@ TEST(Plotter, Simple){
 		window.drawBackground();
 	}
 }
+
+} // namespace GTest
+} // namespace PhysEn

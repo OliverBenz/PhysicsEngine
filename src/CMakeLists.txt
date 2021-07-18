@@ -1,7 +1,7 @@
 add_subdirectory(Common)
 add_subdirectory(Maths)
 add_subdirectory(Physics)
-add_subdirectory(plotter)
+add_subdirectory(Plotter)
 
 add_executable(main main.cpp)
 

@@ -2,6 +2,9 @@
 
 #include <SDL2/SDL.h>
 
+namespace PhysEn {
+namespace Plotter {
+
 class Window{
 public:
 	Window(const unsigned int screenWidth, const unsigned int screenHeight);
@@ -20,3 +23,6 @@ private:
 	SDL_Renderer* renderer = nullptr;
 	SDL_Window* window = nullptr;
 };
+
+} // namespace Plotter
+} // namespace PhysEn

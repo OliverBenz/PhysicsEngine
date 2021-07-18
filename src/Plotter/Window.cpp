@@ -1,9 +1,12 @@
 #include "Window.hpp"
 #include <iostream>
 
+namespace PhysEn {
+namespace Plotter {
+
 Window::Window(const unsigned int screenWidth, const unsigned int screenHeight)
-	: screenWidth{screenWidth}, screenHeight{screenHeight}
-	{ }
+		: screenWidth{screenWidth}, screenHeight{screenHeight}
+{ }
 
 Window::~Window() {
 	SDL_DestroyRenderer(renderer);
@@ -38,3 +41,6 @@ void Window::drawBackground() {
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0);
 	SDL_RenderClear(renderer);
 }
+
+} // namespace Plotter
+} // namespace PhysEn
